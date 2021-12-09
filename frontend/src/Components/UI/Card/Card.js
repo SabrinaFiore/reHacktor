@@ -8,7 +8,8 @@ export default function Card(props) {
             <img src={props.image} alt="test" />
             <p>{props.name}</p>
             <Link to={`/game/${props.slug}`}>
-                <i className="fas fa-chevron-down text-white"></i>
+                {/* DOESN'T WORK: <i className="fas fa-chevron-down text-white"></i> */}
+                <span className="text-white text-decoration-none mt-1"> &gt; </span>
             </Link>
             <div></div>
             <div></div>

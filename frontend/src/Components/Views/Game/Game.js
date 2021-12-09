@@ -41,19 +41,34 @@ export default function Game() {
                             <div className="col-12 col-md-6">
                                 <img className="img-fluid" 
                                     src={game.background_image} 
-                                    alt={game.name} 
+                                    alt={game.name}
                                 />
                             </div>
                         </div>
                         <div className="row mt-5">
                             <h3>Generes</h3>
-                            { game.genres.map(el => 
-                                <Link 
-                                    key={el.id} to={`/search/${el.slug}/1`}
-                                    className="text-decoration-none">
-                                    <button className="btn btn-outline-info">{el.name}</button>
-                                </Link>) 
-                            }
+                            <div className="d-flex">
+                                { game.genres.map(el => 
+                                    <Link 
+                                        key={el.id} to={`/search/${el.slug}/1`}
+                                        className="text-decoration-none mt-1">
+                                        <button className="btn btn-small btn-outline-info rounded-0 px-5 mx-1">{el.name}</button>
+                                    </Link>
+                                    ) 
+                                }
+                            </div>
+                        </div>
+                        <div className="row my-5">
+                            <div className="col-12 col-md-4 col-lg-3 mb-5">
+                                <p className="h4 text-main">Informations</p>
+                                <div className="mb-3">
+                                    <p className="small mb-0">WEBSITE</p>
+                                    <p className="ms-3 mb-0">
+                                        <i className="fal fa-level-up fa-rotate-90 text-main me-3"></i>
+                                        <a className="text-decoration-none text-white" href={game.website}></a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

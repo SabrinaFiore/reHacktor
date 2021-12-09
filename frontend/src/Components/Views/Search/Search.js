@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import GenresList from "../../UI/GenresList/GenresList";
 import Card from "../../UI/Card/Card";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Search() {
 
@@ -35,6 +36,16 @@ export default function Search() {
             <div className="row my-5">
                 <div className="col-12 col-md-3 col-lg-2">{ genres && <GenresList data={genres} />}</div>
                 <div className="col-12 col-md-3 col-lg-10">
+                    <div className="row justify-content-between text-white mb-2">
+                        <div className="col-2">
+                            { num > 1 ? <Link to={`/search/${genre}/${+num - 1}`} className="text-decoration-none text-white dt font-sourceSansPro">Prev</Link> : " " }
+                            
+                        </div>
+                        <div className="col-2">
+                            <Link to={`/search/${genre}/${+num + 1}`} className="text-decoration-none text-white dt font-sourceSansPro">Go Next</Link>
+                            <p className="text-white">Page number {num}</p>
+                        </div>
+                    </div>
                     <div className="row">
                         { games && games.map(game => <div key={game.id} className="col-12 col-md-6 col-lg-4 mb-5">
                             <Card 
