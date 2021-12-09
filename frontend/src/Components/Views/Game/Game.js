@@ -49,7 +49,7 @@ export default function Game() {
                             <h3>Generes</h3>
                             { game.genres.map(el => 
                                 <Link 
-                                    key={el.id} to={`/search/${el.slug}`}
+                                    key={el.id} to={`/search/${el.slug}/1`}
                                     className="text-decoration-none">
                                     <button className="btn btn-outline-info">{el.name}</button>
                                 </Link>) 
