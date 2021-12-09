@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/anchor-has-content */
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Loader from "../../UI/Loader/Loader";
+import { ConfigContext } from "../../../Contexts/Config";
 
 export default function Game() {
 
     let {slug} = useParams();
 
+    let { api_urls, api_secrets } = useContext(ConfigContext)
+
     const [game, setGame] = useState(null);
 
     useEffect(() => {
         fetch(`https://api.rawg.io/api/games/${slug}?&key=c2bb099076634fcd95738d7e0ec1cf38`)
+        // fetch(`${api_urls.games}/api/games/${slug}?&$key=${api_secrets.games}`)
         .then((response) => response.json())
         .then((data) => {
             setGame(data);
@@ -19,7 +25,7 @@ export default function Game() {
 
     return (
         <>
-            { game && (
+            { game ? (
                 <div className="cointainer-fluid pt-5 min-vh-100" 
                     style={{ background: `linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8), rgba(33, 33, 33, 1)), 
                         url(${game.background_image})`,
@@ -65,6 +71,7 @@ export default function Game() {
                                     <p className="small mb-0">WEBSITE</p>
                                     <p className="ms-3 mb-0">
                                         <i className="fal fa-level-up fa-rotate-90 text-main me-3"></i>
+                                        {/* SHOLD BE A LINK FROM react-router-dom */}
                                         <a className="text-decoration-none text-white" href={game.website}></a>
                                     </p>
                                 </div>
@@ -72,7 +79,7 @@ export default function Game() {
                         </div>
                     </div>
                 </div>
-            ) }
+            ) : <Loader/> }
         </>
     );
 }

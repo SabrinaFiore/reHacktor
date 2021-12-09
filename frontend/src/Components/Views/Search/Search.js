@@ -4,6 +4,7 @@ import GenresList from "../../UI/GenresList/GenresList";
 import Card from "../../UI/Card/Card";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Loader from "../../UI/Loader/Loader";
 
 export default function Search() {
 
@@ -75,15 +76,16 @@ export default function Search() {
                             </div>
                         </div>
                     )}
-                    
                     <div className="row">
-                        { games && games.map(game => <div key={game.id} className="col-12 col-md-6 col-lg-4 mb-5">
-                            <Card 
-                                image={game.background_image} 
-                                name={game.name} 
-                                slug={game.slug}
-                            />
-                        </div>)}
+                        { games ? ( games.map(game => 
+                            <div key={game.id} className="col-12 col-md-6 col-lg-4 mb-5">
+                                <Card 
+                                    image={game.background_image} 
+                                    name={game.name} 
+                                    slug={game.slug}
+                                />
+                            </div>)) : ( <Loader/>)
+                        }
                     </div>
                 </div>
             </div>

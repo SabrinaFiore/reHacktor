@@ -6,17 +6,21 @@ import Search from '../src/Components/Views/Search/Search';
 import Game from '../src/Components/Views/Game/Game';
 import Home from './Components/Views/Home/Home';
 
+import { ConfigProvider } from "./Contexts/Config";
+
 function App() {
   return (
-    <Router>
-      <NavBar/>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/search/:genre/:num" element={<Search/>} />
-        <Route path="/game/:slug" element={<Game/>} />
-      </Routes>
-      <Footer/>
-    </Router>
+    <ConfigProvider>
+      <Router>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/search/:genre/:num" element={<Search/>} />
+          <Route path="/game/:slug" element={<Game/>} />
+        </Routes>
+        <Footer/>
+      </Router>
+    </ConfigProvider>
   );
 }
 
